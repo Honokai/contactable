@@ -15,9 +15,6 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                ID
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Name
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -37,23 +34,18 @@
                     <tbody>
                         @foreach ($contacts as $contactInformation)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                <th class="font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center justify-items-center">
-                                    <a class="flex-1 justify-center items-center" href="{{ route('contacts.show', $contactInformation) }}">
-                                        {{$contactInformation->id}}
-                                    </a>
-                                </th>
-                                <td class="px-6 py-4">
-                                    <a class="flex-1 justify-center items-center" href="{{ route('contacts.show', $contactInformation) }}">
+                                <td class="p-0">
+                                    <a class="w-full h-full block p-4" href="{{ route('contacts.show', $contactInformation) }}">
                                         {{$contactInformation->name}}
                                     </a>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a class="flex-1 justify-center items-center" href="{{ route('contacts.show', $contactInformation) }}">
+                                <td class="p-0">
+                                    <a class="w-full h-full block p-4" href="{{ route('contacts.show', $contactInformation) }}">
                                         {{$contactInformation->contact}}
                                     </a>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <a class="flex-1 justify-center items-center" href="{{ route('contacts.show', $contactInformation) }}">
+                                <td class="p-0">
+                                    <a class="w-full h-full block p-4" href="{{ route('contacts.show', $contactInformation) }}">
                                         {{$contactInformation->email}}
                                     </a>
                                 </td>
@@ -62,7 +54,10 @@
                                     <th scope="col" class="px-6 py-3">
                                         <form action="{{route('contacts.destroy', $contactInformation)}}" method="POST">
                                             @method('delete')
-                                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delete</button>
+                                            @csrf
+                                            <x-danger-button class="p-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                            </x-danger-button>
                                         </form>
                                     </th>
                                 @endif
