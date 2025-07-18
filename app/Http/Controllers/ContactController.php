@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -22,15 +23,17 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view("contact.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateContactRequest $request)
     {
-        //
+        $contactCreated = Contact::create($request->only(["name", "contact", "email"]));
+
+        return redirect(route("contacts.show", $contactCreated));
     }
 
     /**
@@ -38,7 +41,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contact.show', ['contactInformaction' => $contact]);
     }
 
     /**
@@ -46,7 +49,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contact.edit', ["contactInformaction" => $contact]);
     }
 
     /**
@@ -62,6 +65,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect(route("contacts.index"));
     }
 }
