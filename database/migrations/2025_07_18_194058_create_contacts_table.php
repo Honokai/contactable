@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->char('contact', 9)->unique();
             $table->string('email')->unique();
+            $table->softDeletes();
         });
     }
 
