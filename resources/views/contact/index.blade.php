@@ -38,7 +38,7 @@
                                     {{$contactInformation->name}}
                                 </td>
                                 <td class="p-4">
-                                    {{$contactInformation->contact}}
+                                    {{$contactInformation->contact_formatted}}
                                 </td>
                                 <td class="p-4">
                                     {{$contactInformation->email}}

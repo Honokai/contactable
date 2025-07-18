@@ -17,4 +17,11 @@ class Contact extends Model
         "contact",
         "email"
     ];
+
+    public function getContactFormattedAttribute(): string
+    {
+        $digits = preg_replace('/\D/', '', $this->contact);
+
+        return preg_replace('/(\d{1})(\d{4})(\d{4})/', '$1 $2-$3', $digits);
+    }
 }

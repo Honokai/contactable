@@ -5,9 +5,6 @@
         </h2>
     </x-slot>
 
-    @php
-        $isAuthenticated = auth()->check();
-    @endphp
     <div class="container mx-auto py-12 flex items-center justify-center">
 
             <div class="w-96 flex flex-col gap-2 p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -23,7 +20,7 @@
 
                 <div>
                     <x-input-label for="contact" :value="__('Contact')" />
-                    <x-text-input disabled readonly id="contact" aria-label="disabled input" class="brightness-[85%] cursor-not-allowed block mt-1 w-full" type="text" :value="$contactInformaction->contact"/>
+                    <x-text-input disabled readonly id="contact" aria-label="disabled input" class="brightness-[85%] cursor-not-allowed block mt-1 w-full" type="text" :value="$contactInformaction->contact_formatted"/>
                 </div>
 
                 <div>
