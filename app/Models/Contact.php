@@ -12,6 +12,8 @@ class Contact extends Model
 
     public $timestamps = false;
 
+    protected $perPage = 12;
+
     protected $fillable = [
         "name",
         "contact",
