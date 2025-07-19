@@ -18,15 +18,12 @@ Route::get('/', [ContactController::class, 'index'])->name('home');
 
 Route::get('/contacts', [ ContactController::class,'index'])->name('contacts.index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('contacts', ContactController::class)->except(['index']);
+    Route::post('/contacts/{contact}/restore', [ContactController::class,'restore'])->name('contacts.restore');
 });
 
 require __DIR__.'/auth.php';
