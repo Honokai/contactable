@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $pageableContacts = Contact::orderBy("name","asc")->paginate(10);
+        $pageableContacts = Contact::orderBy("name","asc")->paginate();
 
         return view("contact.index", ["contacts" => $pageableContacts]);
     }
@@ -55,9 +55,11 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(StoreUpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->update($request->only(['name', 'email', 'contact']));
+
+        return redirect(route('contacts.show', $contact));
     }
 
     /**
@@ -68,5 +70,11 @@ class ContactController extends Controller
         $contact->delete();
 
         return redirect(route("contacts.index"));
+    }
+
+    public function restore(Contact $contact) {
+        $contact->restore();
+
+        return redirect(route("contacts.show", $contact));
     }
 }
