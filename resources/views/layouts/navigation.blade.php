@@ -18,6 +18,17 @@
                 </div>
             </div>
 
+            @if(!auth()->check())
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <x-dropdown-link :href="route('login')" class="hover:brightness-75 rounded">
+                    {{ __('Login') }}
+                </x-dropdown-link>
+                <x-dropdown-link :href="route('register')" class="hover:brightness-75 rounded">
+                    {{ __('Register') }}
+                </x-dropdown-link>
+            </div>
+            @endif
+
             @if(Auth::user())
             <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
